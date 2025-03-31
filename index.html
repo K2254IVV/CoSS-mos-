@@ -3,93 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание скина для Minecraft | 3D Превью</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="skinview3d.min.js"></script>
+    <title>Minecraft Skin Creator with 3D Preview</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Создатель скинов Minecraft</h1>
-        <p>Создайте свой уникальный скин с 3D превью</p>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="editor-section">
-                <h2>Редактор скина</h2>
-                <div class="skin-editor">
-                    <canvas id="skinCanvas" width="64" height="64"></canvas>
-                    <div class="editor-tools">
-                        <div class="color-picker">
-                            <input type="color" id="colorPicker" value="#000000">
-                            <button id="fillColor">Залить</button>
-                        </div>
-                        <div class="brush-size">
-                            <label>Размер кисти:</label>
-                            <input type="range" id="brushSize" min="1" max="10" value="1">
-                        </div>
-                        <div class="skin-parts">
-                            <button class="part-btn active" data-part="head">Голова</button>
-                            <button class="part-btn" data-part="body">Тело</button>
-                            <button class="part-btn" data-part="arm-left">Левая рука</button>
-                            <button class="part-btn" data-part="arm-right">Правая рука</button>
-                            <button class="part-btn" data-part="leg-left">Левая нога</button>
-                            <button class="part-btn" data-part="leg-right">Правая нога</button>
-                        </div>
-                        <div class="actions">
-                            <button id="clearPart">Очистить часть</button>
-                            <button id="clearAll">Очистить все</button>
-                            <button id="downloadSkin">Скачать скин</button>
-                            <button id="loadSkin">Загрузить скин</button>
-                            <input type="file" id="skinUpload" accept=".png" style="display: none;">
-                        </div>
+    <div class="container">
+        <h1>Minecraft Skin Creator</h1>
+        
+        <div class="editor-container">
+            <div class="skin-editor">
+                <h2>Skin Editor</h2>
+                <div class="skin-layers">
+                    <div class="layer-controls">
+                        <button id="toggle-layer">Show Second Layer</button>
+                        <button id="clear-layer">Clear Layer</button>
+                    </div>
+                    <div class="skin-grid-container">
+                        <div class="skin-grid" id="skin-grid"></div>
                     </div>
                 </div>
+                
+                <div class="color-picker">
+                    <input type="color" id="color-selector" value="#7b7b7b">
+                    <div class="preset-colors">
+                        <div class="color" style="background-color: #000000;"></div>
+                        <div class="color" style="background-color: #3f3f3f;"></div>
+                        <div class="color" style="background-color: #7b7b7b;"></div>
+                        <div class="color" style="background-color: #ffffff;"></div>
+                        <div class="color" style="background-color: #7b3f3f;"></div>
+                        <div class="color" style="background-color: #ff0000;"></div>
+                        <div class="color" style="background-color: #7b7b3f;"></div>
+                        <div class="color" style="background-color: #ffff00;"></div>
+                        <div class="color" style="background-color: #3f7b3f;"></div>
+                        <div class="color" style="background-color: #00ff00;"></div>
+                        <div class="color" style="background-color: #3f7b7b;"></div>
+                        <div class="color" style="background-color: #00ffff;"></div>
+                        <div class="color" style="background-color: #3f3f7b;"></div>
+                        <div class="color" style="background-color: #0000ff;"></div>
+                        <div class="color" style="background-color: #7b3f7b;"></div>
+                        <div class="color" style="background-color: #ff00ff;"></div>
+                    </div>
+                </div>
+                
+                <div class="tools">
+                    <button id="pencil-tool" class="active">Pencil</button>
+                    <button id="fill-tool">Fill</button>
+                    <button id="eraser-tool">Eraser</button>
+                    <button id="mirror-tool">Mirror</button>
+                </div>
+                
+                <div class="file-actions">
+                    <input type="file" id="skin-upload" accept=".png">
+                    <button id="download-skin">Download Skin</button>
+                    <button id="reset-skin">Reset Skin</button>
+                </div>
             </div>
-
-            <div class="preview-section">
-                <h2>3D Превью</h2>
-                <div id="skinPreview"></div>
-                <div class="preview-controls">
-                    <button id="rotateToggle">Вращение: Вкл</button>
-                    <button id="changePose">Сменить позу</button>
-                    <select id="animationSelect">
-                        <option value="none">Без анимации</option>
-                        <option value="walk">Ходьба</option>
-                        <option value="run">Бег</option>
-                        <option value="dance">Танец</option>
+            
+            <div class="skin-preview">
+                <h2>3D Preview</h2>
+                <div class="preview-container">
+                    <canvas id="preview-canvas" width="200" height="400"></canvas>
+                    <div class="preview-controls">
+                        <button id="rotate-left">↻</button>
+                        <button id="rotate-right">↺</button>
+                        <button id="zoom-in">+</button>
+                        <button id="zoom-out">-</button>
+                        <button id="reset-view">Reset</button>
+                    </div>
+                </div>
+                <div class="animation-controls">
+                    <select id="animation-select">
+                        <option value="idle">Idle</option>
+                        <option value="walk">Walk</option>
+                        <option value="run">Run</option>
+                        <option value="jump">Jump</option>
+                        <option value="wave">Wave</option>
                     </select>
                 </div>
             </div>
         </div>
-
-        <div class="templates-section">
-            <h2>Готовые шаблоны</h2>
-            <div class="skin-templates">
-                <div class="template" data-template="default">
-                    <img src="templates/default.png" alt="Стандартный скин">
-                    <p>Стандартный</p>
-                </div>
-                <div class="template" data-template="hero">
-                    <img src="templates/hero.png" alt="Герой">
-                    <p>Герой</p>
-                </div>
-                <div class="template" data-template="girl">
-                    <img src="templates/girl.png" alt="Девушка">
-                    <p>Девушка</p>
-                </div>
-                <div class="template" data-template="zombie">
-                    <img src="templates/zombie.png" alt="Зомби">
-                    <p>Зомби</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2023 Создатель скинов Minecraft. Не аффилирован с Mojang или Microsoft.</p>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
