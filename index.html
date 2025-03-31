@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание скина для Minecraft | 3D Превью</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="skinview3d.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Создатель скинов Minecraft</h1>
+        <p>Создайте свой уникальный скин с 3D превью</p>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="editor-section">
+                <h2>Редактор скина</h2>
+                <div class="skin-editor">
+                    <canvas id="skinCanvas" width="64" height="64"></canvas>
+                    <div class="editor-tools">
+                        <div class="color-picker">
+                            <input type="color" id="colorPicker" value="#000000">
+                            <button id="fillColor">Залить</button>
+                        </div>
+                        <div class="brush-size">
+                            <label>Размер кисти:</label>
+                            <input type="range" id="brushSize" min="1" max="10" value="1">
+                        </div>
+                        <div class="skin-parts">
+                            <button class="part-btn active" data-part="head">Голова</button>
+                            <button class="part-btn" data-part="body">Тело</button>
+                            <button class="part-btn" data-part="arm-left">Левая рука</button>
+                            <button class="part-btn" data-part="arm-right">Правая рука</button>
+                            <button class="part-btn" data-part="leg-left">Левая нога</button>
+                            <button class="part-btn" data-part="leg-right">Правая нога</button>
+                        </div>
+                        <div class="actions">
+                            <button id="clearPart">Очистить часть</button>
+                            <button id="clearAll">Очистить все</button>
+                            <button id="downloadSkin">Скачать скин</button>
+                            <button id="loadSkin">Загрузить скин</button>
+                            <input type="file" id="skinUpload" accept=".png" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2>3D Превью</h2>
+                <div id="skinPreview"></div>
+                <div class="preview-controls">
+                    <button id="rotateToggle">Вращение: Вкл</button>
+                    <button id="changePose">Сменить позу</button>
+                    <select id="animationSelect">
+                        <option value="none">Без анимации</option>
+                        <option value="walk">Ходьба</option>
+                        <option value="run">Бег</option>
+                        <option value="dance">Танец</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="templates-section">
+            <h2>Готовые шаблоны</h2>
+            <div class="skin-templates">
+                <div class="template" data-template="default">
+                    <img src="templates/default.png" alt="Стандартный скин">
+                    <p>Стандартный</p>
+                </div>
+                <div class="template" data-template="hero">
+                    <img src="templates/hero.png" alt="Герой">
+                    <p>Герой</p>
+                </div>
+                <div class="template" data-template="girl">
+                    <img src="templates/girl.png" alt="Девушка">
+                    <p>Девушка</p>
+                </div>
+                <div class="template" data-template="zombie">
+                    <img src="templates/zombie.png" alt="Зомби">
+                    <p>Зомби</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2023 Создатель скинов Minecraft. Не аффилирован с Mojang или Microsoft.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
